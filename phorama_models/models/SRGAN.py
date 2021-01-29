@@ -1,7 +1,7 @@
 import tensorflow as tf
 import numpy as np
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D, UpSampling2D, Activation, Add, BatchNormalization, LeakyReLU
+from tensorflow.keras.layers import Input, Conv2D, UpSampling2D, Activation, Add, BatchNormalization
 from .model import PhoramaModel
 
 def ResidualBlock(inputs, filters):
