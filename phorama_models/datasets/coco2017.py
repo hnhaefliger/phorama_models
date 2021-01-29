@@ -3,6 +3,8 @@ from . import downloads
 def get(path):
     '''
     Download and unzip the COCO 2017 dataset
+
+    https://cocodataset.org/#home
     '''
 
     if path != '' and path[-1] != '/':
