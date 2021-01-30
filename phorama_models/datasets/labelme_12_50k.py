@@ -10,4 +10,4 @@ def get(path):
     if path != '' and path[-1] != '/':
         path += '/'
 
-    downloads.getAndExtract('http://www.ais.uni-bonn.de/deep_learning/LabelMe-12-50k.tar.gz', path + 'LabelMe-12-50k.tar.gz', path, verbose=1, name='images') # part 1
+    downloads.getAndExtract('http://www.ais.uni-bonn.de/deep_learning/LabelMe-12-50k.tar.gz', path + 'LabelMe-12-50k.tar.gz', path + 'LabelMe-12-50k', verbose=1, name='images') # part 1
