@@ -34,7 +34,7 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
         else:
             mode = 'r'
         
-        compressed_file = tarfile.TarFile(download_output, mode) # open tar file
+        compressed_file = tarfile.open(download_output, mode) # open tar file
         iterable = compressed_file.getmembers() # get list of tar contents
 
     else:
