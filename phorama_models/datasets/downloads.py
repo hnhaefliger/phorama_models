@@ -22,7 +22,19 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
         iterable = compressed_file.infolist() # get list of zipped contents
 
     elif '.tar' in download_output:
-        compressed_file = tarfile.TarFile(download_output, 'r') # open tar file
+        if '.gz' in download_output:
+            mode = 'r:gz'
+          
+        elif '.bz2' in download_output:
+            mode = 'r:bz2'
+            
+        elif '.xz' in download_output:
+            model = 'r:xz'
+            
+        else:
+            mode = 'r'
+        
+        compressed_file = tarfile.TarFile(download_output, mode) # open tar file
         iterable = compressed_file.getmembers() # get list of tar contents
 
     else:
