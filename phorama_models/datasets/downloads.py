@@ -4,7 +4,7 @@ import os
 import requests
 from tqdm import tqdm
 
-def getAndExtract(url, download_output, unzip_output, verbose=1, name='download'):
+def getAndExtract(url, download_output, extract_output, verbose=1, name='download'):
     response = requests.get(url, stream=True) # download file from url
     length = int(response.headers.get('content-length')) # get number of bytes
 
@@ -32,6 +32,6 @@ def getAndExtract(url, download_output, unzip_output, verbose=1, name='download'
         iterable = tqdm(iterable, desc=name, leave=True, unit='KB')
 
     for file in iterable: # extract files
-        compressed_file.extract(file)
+        compressed_file.extract(file, path=extract_output)
 
     os.remove(download_output) # remove zip file
