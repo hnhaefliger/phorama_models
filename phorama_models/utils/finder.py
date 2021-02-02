@@ -16,7 +16,7 @@ class ImageFinder:
                 if mime != None and 'image/' in mime:
                     found.append(file)
 
-                elif mime == not(os.path.isfile(file)):
+                elif not(os.path.isfile(file)):
                     search.append(file)
 
             del search[0]
