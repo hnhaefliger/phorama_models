@@ -44,7 +44,7 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
         raise Exception('Unsupported compression type')
 
     if verbose == 1: # progress bar
-        iterable = tqdm(iterable, desc=name + ' (extract)', leave=True, unit='Files')
+        iterable = tqdm(iterable, desc=name + ' (extract)', leave=True, unit=' Files')
 
     for file in iterable: # extract files
         compressed_file.extract(file, path=extract_output)
