@@ -1,5 +1,6 @@
 from tensorflow.keras.utils import Sequence
 from tensorflow.keras.preprocessing.image import load_img, img_to_array, array_to_img
+import numpy as np
 
 class ImageSequence(Sequence):
     def __init__(self, images, batch_size):

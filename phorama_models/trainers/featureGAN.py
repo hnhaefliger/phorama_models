@@ -1,5 +1,6 @@
 from .trainer import Trainer
 from tqdm import tqdm
+import numpy as np
 
 class FeatureGANTrainer(Trainer):
     def __init__(self):

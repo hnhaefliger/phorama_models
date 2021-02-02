@@ -1,6 +1,7 @@
 from .trainer import Trainer
 from tensorflow.keras.models import Model
 from tqdm import tqdm
+import numpy as np
 
 class GANTrainer:
     def __init__(self):
