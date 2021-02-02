@@ -1,6 +1,7 @@
 from .sequence import ImageSequence
 from tensorflow.keras.preprocessing.image import load_img, img_to_array, array_to_img
 import numpy as np
+import random
 
 class SRImageSequence(ImageSequence):
     def __init__(self, images, batch_size, low_res=(32,32), upscaling=2):
