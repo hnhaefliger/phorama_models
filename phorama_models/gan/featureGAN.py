@@ -4,6 +4,7 @@ from tensorflow.keras.layers import Input
 class FeatureGAN(PhoramaGAN):
     def __init__(self, generator, discriminator, features, optimizer='Adam'):
         inputs = Input(shape=(None,None,3))
+        inputs = inner
 
         inner = generator(inner)
 

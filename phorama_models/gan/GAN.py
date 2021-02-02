@@ -4,14 +4,14 @@ from tensorflow.keras.layers import Input
 class PhoramaGAN:
     def __init__(self, generator, discriminator, optimizer='Adam'):
         inputs = Input(shape=(None,None,3))
-
-        inner = generator(inputs)
+        inner = inputs
+        
+        inner = generator(inner)
 
         discriminator.setTrainable(False)
         inner = discriminator(inner)
 
         self.model = Model(inputs=inputs, outputs=inner)
-
         self.model.compile(loss='binary_crossentropy', optimizer=optimizer)
         
     def predict(self, data):
