@@ -2,7 +2,7 @@ import os
 import mimetypes
 
 class ImageFinder:
-    def search(directory):
+    def search(self, directory):
         found = []
         search = [directory]
 
