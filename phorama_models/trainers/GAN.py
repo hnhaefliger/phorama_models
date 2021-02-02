@@ -21,8 +21,8 @@ class GANTrainer:
 
                 fake_y = generator.predict(x)
 
-                valid = np.ones((train.batch_size, 1))
-                fake = np.zeros((train.batch_size, 1))
+                valid = np.ones((training_data.batch_size, 1))
+                fake = np.zeros((training_data.batch_size, 1))
 
                 x_new = np.concatenate((y, fake_hr), axis=0)
                 y_new = np.concatenate((valid, fake), axis=0)
