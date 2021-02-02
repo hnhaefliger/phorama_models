@@ -9,7 +9,6 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
     length = int(response.headers.get('content-length')) # get number of bytes
 
     iterable = response.iter_content(chunk_size=1024)
-    print(len(iterable))
 
     if verbose == 1: # progress bar
         iterable = tqdm(iterable, desc=name + ' (download)', leave=True, unit='KB')
