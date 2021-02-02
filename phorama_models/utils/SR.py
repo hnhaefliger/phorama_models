@@ -1,5 +1,6 @@
 from .sequence import ImageSequence
 from tensorflow.keras.preprocessing.image import load_img, img_to_array, array_to_img
+from tensorflow.image import resize
 import numpy as np
 import random
 
