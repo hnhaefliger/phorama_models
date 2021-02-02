@@ -11,7 +11,7 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
     iterable = response.iter_content(chunk_size=1024)
 
     if verbose == 1: # progress bar
-        iterable = tqdm(iterable, desc=name + ' (download)', leave=True, unit='KB')
+        iterable = tqdm(iterable, desc=name + ' (download)', leave=True, unit='KB', total=length//1024+1)
 
     f = open(download_output, 'wb+') # save zip file
 
