@@ -3,9 +3,6 @@ from tqdm import tqdm
 import numpy as np
 
 class FeatureGANTrainer(Trainer):
-    def __init__(self):
-        super().__init__()
-
     def train(self, generator, discriminator, features, gan, training_data, epochs=1, validation_data=None, generator_save_path=None, discriminator_save_path=None):
         batches_per_epoch = len(training_data)
 
