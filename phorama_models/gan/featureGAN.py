@@ -1,4 +1,5 @@
 from .GAN import PhoramaGAN
+from tensorflow.keras.models import Model
 from tensorflow.keras.layers import Input
 
 class FeatureGAN(PhoramaGAN):
