@@ -9,13 +9,17 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
     length = int(response.headers.get('content-length')) # get number of bytes
 
     iterable = response.iter_content(chunk_size=1024)
+    print(len(iterable))
 
     if verbose == 1: # progress bar
-        iterable = tqdm(iterable, desc=name, leave=True, unit='KB')
-    
-    with open(download_output, 'wb+') as f: # save zip file
-        for chunk in iterable:
-            f.write(chunk)
+        iterable = tqdm(iterable, desc=name + ' (download)', leave=True, unit='KB')
+
+    f = open(download_output, 'wb+') # save zip file
+
+    for chunk in iterable:
+        f.write(chunk)
+
+    f.close()
 
     if '.zip' in download_output:
         compressed_file = zipfile.ZipFile(download_output, 'r') # open zip file
@@ -41,7 +45,7 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
         raise Exception('Unsupported compression type')
 
     if verbose == 1: # progress bar
-        iterable = tqdm(iterable, desc=name, leave=True, unit='KB')
+        iterable = tqdm(iterable, desc=name + ' (extract)', leave=True, unit='Files')
 
     for file in iterable: # extract files
         compressed_file.extract(file, path=extract_output)
