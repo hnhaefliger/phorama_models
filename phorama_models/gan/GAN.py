@@ -1,18 +1,19 @@
-import tensorflow as tf
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D
-import numpy as np
+from tensorflow.keras.layers import Input
 
-class PhoramaFeatures:
-    def __init__(self, load_path):
-        inputs = Input(shape=(None, None, 3))
-        inner = inputs
+class PhoramaGAN:
+    def __init__(self, generator, discriminator, optimizer='Adam'):
+        inputs = Input(shape=(None,None,3))
 
-        inner = Conv2D(3, (3,3), padding='same', activation='sigmoid')(inner)
+        inner = generator(inputs)
+
+        discriminator.setTrainable(False)
+        inner = discriminator(inner)
 
         self.model = Model(inputs=inputs, outputs=inner)
-        self.model.compile(loss='mse', optimizer='Adam')
 
+        self.model.compile(loss='binary_crossentropy', optimizer=optimizer)
+        
     def predict(self, data):
         return self.model.predict(data)
 
@@ -28,5 +29,3 @@ class PhoramaFeatures:
     def save(self, path):
         return self.model.save(path)
 
-
-    
