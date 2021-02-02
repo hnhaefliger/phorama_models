@@ -13,7 +13,6 @@ class ImageFinder:
                 mime = mimetypes.guess_type(file)[0]
                 
                 if mime != None and 'image' in mime:
-                    print(file, mime)
                     found.append(file)
 
                 elif not(os.path.isfile(file)):
@@ -21,7 +20,6 @@ class ImageFinder:
 
             del search[0]
 
-        print(len(found))
         return found
 
         
