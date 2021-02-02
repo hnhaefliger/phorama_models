@@ -10,11 +10,13 @@ class ImageFinder:
             tmp = [search[0] + '/' + file for file in os.listdir(search[0])]
 
             for file in tmp:
-                if 'image/' in mimetypes.guess_type(file)[0]:
-                    found.append(file)
+                mime = mimetypes.guess_type(file)[0]
+                if mine != None:
+                    if 'image/' in :
+                        found.append(file)
 
-                elif not(os.path.isfile(file)):
-                    search.append(file)
+                    elif not(os.path.isfile(file)):
+                        search.append(file)
 
             del search[0]
 
