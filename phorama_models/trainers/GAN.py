@@ -4,9 +4,6 @@ from tqdm import tqdm
 import numpy as np
 
 class GANTrainer:
-    def __init__(self):
-        super().__init__()
-
     def train(self, generator, discriminator, gan, training_data, epochs=1, validation_data=None, generator_save_path=None, discriminator_save_path=None):
         batches_per_epoch = len(training_data)
 
@@ -17,7 +14,7 @@ class GANTrainer:
             bar = tqdm(range(batches_per_epoch), desc='epoch ' + str(epoch), leave=True, unit='B')
 
             for batch in bar:
-                x, y = train[batch]
+                x, y = training_data[batch]
 
                 fake_y = generator.predict(x)
 
