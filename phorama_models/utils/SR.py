@@ -14,7 +14,7 @@ class SRImageSequence(ImageSequence):
 
     def __getitem__(self, idx):
         images = self.images[idx*self.batch_size:(idx+1)*self.batch_size]
-        images = np.array([img_to_array(load_img(img)) for img in images])
+        images = [img_to_array(load_img(img)) for img in images]
 
         x = [img.shape[0] - self.high_res[0] for img in images]
         y = [img.shape[1] - self.high_res[1] for img in images]
