@@ -12,7 +12,7 @@ class ImageSequence(Sequence):
 
     def __getitem__(self, idx):
         images = self.images[idx*self.batch_size:(idx+1)*self.batch_size]
-        images = np.array([img_to_array(load_img(img)) for img in images])
+        images = [img_to_array(load_img(img)) for img in images]
 
         x = np.array(images) / 255
         y = np.array(images) / 255
