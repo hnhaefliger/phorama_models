@@ -19,7 +19,7 @@ class SRImageSequence(ImageSequence):
         x = [random.randint(0, i) if i >= 0 else -1 for i in x]
         y = [random.randint(0, i) if i >= 0 else -1 for i in y]
 
-        images = [[line[y[i]:y[i]+self.high_res[1]] for line in images[i][x[i]:x[i]+self.high_res[0]] if y[i] >= 0 and x[i] >= 0 else np.random.rand(self.high_res[0],self.high_res[1],3)*255 for i in range(self.batch_size)]
+        images = [[line[y[i]:y[i]+self.high_res[1]] for line in images[i][x[i]:x[i]+self.high_res[0]]] if (y[i] >= 0 and x[i] >= 0) else np.random.rand(self.high_res[0],self.high_res[1],3)*255 for i in range(self.batch_size)]
         
         x = np.array(images)
         x = np.array(resize(x, self.low_res)) / 255

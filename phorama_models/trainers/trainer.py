@@ -2,7 +2,7 @@ class Trainer:
     def __init__(self):
         pass
 
-    def train(self, model, training_data, epochs=1, validation_data=None, save_path):
+    def train(self, model, training_data, epochs=1, validation_data=None, save_path=None):
         batches_per_epoch = len(training_data)
 
         for epoch in range(epochs):
