@@ -13,5 +13,5 @@ class VGG(PhoramaFeatures):
         inputs = Input(shape=(64,64,3))
         outputs = vgg(inputs)
 
-        self.vgg = Model(inputs=inputs, outputs=outputs)
-        self.vgg.compile(loss='mse', optimizer='Adam')
+        self.model = Model(inputs=inputs, outputs=outputs)
+        self.model.compile(loss='mse', optimizer='Adam')
