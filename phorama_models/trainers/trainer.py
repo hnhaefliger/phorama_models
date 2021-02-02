@@ -1,3 +1,5 @@
+from tqdm import tqdm
+
 class Trainer:
     def __init__(self):
         pass

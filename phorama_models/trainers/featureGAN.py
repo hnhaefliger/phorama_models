@@ -1,4 +1,5 @@
 from .trainer import Trainer
+from tqdm import tqdm
 
 class FeatureGANTrainer(Trainer):
     def __init__(self):
