@@ -16,7 +16,7 @@ class GANTrainer:
             for batch in bar:
                 x, y = training_data[batch]
 
-                fake_y = generator.predict(x)
+                fake_hr = generator.predict(x)
 
                 valid = np.ones((training_data.batch_size, 1))
                 fake = np.zeros((training_data.batch_size, 1))
