@@ -11,7 +11,7 @@ class ImageFinder:
 
             for file in tmp:
                 mime = mimetypes.guess_type(file)[0]
-                if mine != None:
+                if mime != None:
                     if 'image/' in mime:
                         found.append(file)
 
