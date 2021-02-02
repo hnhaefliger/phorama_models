@@ -10,7 +10,7 @@ class Trainer:
 
         for epoch in range(epochs):
             loss = 0
-            bar = tqdm(range(batches_per_epoch), desc='epoch ' + str(epoch), leave=True)
+            bar = tqdm(range(batches_per_epoch), desc='epoch ' + str(epoch), leave=True, unit='B')
 
             for batch in bar:
                 x, y = training_data[batch]

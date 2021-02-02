@@ -14,7 +14,7 @@ class GANTrainer:
             discriminator_loss = 0
             generator_loss = 0
             
-            bar = tqdm(range(batches_per_epoch), desc='epoch ' + str(epoch), leave=True)
+            bar = tqdm(range(batches_per_epoch), desc='epoch ' + str(epoch), leave=True, unit=B)
 
             for batch in bar:
                 x, y = train[batch]
