@@ -18,12 +18,9 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
             
         iterable = tqdm(iterable, desc=name + ' (download)', leave=True, unit='KB', total=total)
 
-    f = open(download_output, 'wb+') # save zip file
-
-    for chunk in iterable:
-        f.write(chunk)
-
-    f.close()
+    with open(download_output, 'wb+') as f: # save zip file
+        for chunk in iterable:
+            f.write(chunk)
 
     if '.zip' in download_output:
         compressed_file = zipfile.ZipFile(download_output, 'r') # open zip file
