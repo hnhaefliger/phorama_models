@@ -34,7 +34,7 @@ def getAndExtract(url, download_output, extract_output, verbose=1, name='downloa
             mode = 'r:bz2'
             
         elif '.xz' in download_output:
-            model = 'r:xz'
+            mode = 'r:xz'
             
         else:
             mode = 'r'
