@@ -36,3 +36,25 @@ SRGAN_trainer = phorama_models.trainers.FeatureGANTrainer()
 
 SRGAN_trainer.train(SRGAN_generator, SRGAN_discriminator, SRGAN_features, SRGAN_combined, SRGAN_data, epochs=10)
 ```
+
+We can also experiment with different training setups by changing only certain lines:
+
+e.g. To train SRGAN on only the discriminator:
+
+```python3
+SRGAN_generator = phorama_models.models.SRGAN()
+
+SRGAN_discriminator = phorama_models.discriminators.SRGAN()
+
+SRGAN_combined = phorama_models.gan.PhoramaGAN(SRGAN_generator, SRGAN_discriminator)
+
+SRGAN_trainer = phorama_models.trainers.GANTrainer()
+```
+
+Or to train it directly on the MSE with the images:
+
+```python3
+SRGAN_generator = phorama_models.models.SRGAN()
+
+SRGAN_trainer = phorama_models.trainers.Trainer()
+```
