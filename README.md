@@ -54,7 +54,7 @@ SRGAN_trainer = phorama_models.trainers.GANTrainer()
 Or to train it directly on the MSE with the images:
 
 ```python3
-SRGAN_generator = phorama_models.models.SRGAN()
+SRGAN_generator = phorama_models.models.RSGUNet()
 
 SRGAN_trainer = phorama_models.trainers.Trainer()
 ```
