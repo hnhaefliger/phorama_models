@@ -26,15 +26,15 @@ def MultiConv(inputs, filters, five=False, seven=False, nine=False, normalize=Fa
 
     if five:
         inner = DoubleConv(inputs, filters, (5, 5), normalize=normalize, alpha=alpha)
-        output = Concatenate()(output, inner)
+        output = Concatenate()([output, inner])
 
     if seven:
         inner = DoubleConv(inputs, filters, (7, 7), normalize=normalize, alpha=alpha)
-        output = Concatenate()(output, inner)
+        output = Concatenate()([output, inner])
 
     if nine:
         inner = DoubleConv(inputs, filters, (9, 9), normalize=normalize, alpha=alpha)
-        output = Concatenate()(output, inner)
+        output = Concatenate()([output, inner])
 
     return output
 
@@ -49,16 +49,16 @@ def Final(inputs, filters, kernel):
 
 class Level5(PhoramaModel):
     def __init__(self, load_path=None, optimizer='Adam'):
-        inputs = Input(shape=(None, None, 3))
+        inputs = Input(shape=(None, None, 256))
         inner = inputs
 
         inner = MultiConv(inner, 512, normalize=True)
 
         inner1 = MultiConv(inner, 512, normalize=True)
-        inner = Add()(inner, inner1)
+        inner = Add()([inner, inner1])
 
         inner1 = MultiConv(inner, 512, normalize=True)
-        inner = Add()(inner, inner1)
+        inner = Add()([inner, inner1])
 
         inner = MultiConv(inner, 512, normalize=True)
 
@@ -76,7 +76,7 @@ class Level4(PhoramaModel):
         level5 = Level5(load_path=load_level5)
         level5.model.trainable = False
 
-        inputs = Input(shape=(None, None, 3))
+        inputs = Input(shape=(None, None, 128))
 
         inner = inputs
 
@@ -85,17 +85,21 @@ class Level4(PhoramaModel):
         prev = AveragePooling2D((2,2))(inner)
         prev = level5(prev)
 
-        inner = Concatenate()(inner, prev)
+        inner = Concatenate()([inner, prev])
 
         inner = MultiConv(inner, 256, normalize=True)
 
         inner1 = MultiConv(inner, 256, normalize=True)
-        inner = Add()(inner, inner1)
+        inner = Add()([inner, inner1])
 
-        inner1 = MultiConv(inner, 512, normalize=True)
-        inner = Add()(inner, inner1)
+        inner1 = MultiConv(inner, 256, normalize=True)
+        inner = Add()([inner, inner1])
 
-        inner = MultiConv(inner, 512, normalize=True)
+        inner = MultiConv(inner, 256, normalize=True)
+
+        inner = Concatenate()([inner, prev])
+
+        inner = MultiConv(inner, 256, normalize=True)
 
         outputs = inner
 
@@ -108,10 +112,10 @@ class Level4(PhoramaModel):
 
 class PyNet(PhoramaModel):
     def __init__(self, load_path=None, optimizer='Adam'):
-        inputs = Input(shape=(None, None, 3))
+        inputs = Input(shape=(None, None, 128))
         inner = inputs
 
-        inner = Conv2D(3, (3,3), padding='same', activation='sigmoid')(inner)
+        inner = Level4()(inner)
 
         outputs = inner
 
@@ -120,6 +124,3 @@ class PyNet(PhoramaModel):
 
         if load_path != None:
             self.model.load_weights(load_path)
-
-
-test = PyNet()
