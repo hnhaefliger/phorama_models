@@ -1,5 +1,6 @@
 from .SRGAN import SRGAN
 from .RSGUNet import RSGUNet
+from .PyNet import PyNet
 
 '''
 Models:
