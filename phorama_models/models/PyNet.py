@@ -133,16 +133,8 @@ class Level4(PhoramaModel):
         inner1 = MultiConv(inner, 256, normalize=True)
         inner = Add()([inner, inner1])
 
-<<<<<<< HEAD
         inner = MultiConv(inner, 256, normalize=True)
 
-=======
-        inner1 = MultiConv(inner, 256, normalize=True)
-        inner = Add()([inner, inner1])
-
-        inner = MultiConv(inner, 256, normalize=True)
-
->>>>>>> 7df3623dfd002524f7c9e5c9d6e2fba766708998
         inner = Concatenate()([inner, prev])
 
         inner = MultiConv(inner, 256, normalize=True)
@@ -156,7 +148,6 @@ class Level4(PhoramaModel):
             self.model.load_weights(load_path)
 
 
-<<<<<<< HEAD
 class Level3(PhoramaModel):
     def __init__(self, load_path=None, load_level4=None, optimizer='Adam'):
         level4 = Level4(load_path=load_level4)
@@ -284,14 +275,6 @@ class Level1(PhoramaModel):
         inner = Concatenate()([inner_s, inner, prev])
 
         inner = MultiConv(inner, 32, normalize=False)
-=======
-class PyNet(PhoramaModel):
-    def __init__(self, load_path=None, optimizer='Adam'):
-        inputs = Input(shape=(None, None, 128))
-        inner = inputs
-
-        inner = Level4()(inner)
->>>>>>> 7df3623dfd002524f7c9e5c9d6e2fba766708998
 
         outputs = inner
 
@@ -300,7 +283,6 @@ class PyNet(PhoramaModel):
 
         if load_path != None:
             self.model.load_weights(load_path)
-<<<<<<< HEAD
 
 
 class PyNet(PhoramaModel):
@@ -317,5 +299,3 @@ class PyNet(PhoramaModel):
 
         if load_path != None:
             self.model.load_weights(load_path)
-=======
->>>>>>> 7df3623dfd002524f7c9e5c9d6e2fba766708998
