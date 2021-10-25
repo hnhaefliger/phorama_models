@@ -2,7 +2,7 @@ from .trainer import Trainer
 from tensorflow.keras.models import Model
 from tqdm import tqdm
 import numpy as np
-from phorama_models.models.PyNet import Level1Loss, Level2_3Loss, Level4_5Loss
+from ..models.PyNet import Level1Loss, Level2_3Loss, Level4_5Loss
 
 class PyNetTrainer:
     def train(self, pynet, training_data, epochs=1, validation_data=None, save_path=None):
