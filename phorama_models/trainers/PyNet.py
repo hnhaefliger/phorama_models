@@ -10,6 +10,7 @@ class PyNetTrainer:
     def train(self, pynet, training_data, epochs=1, validation_data=None, save_path=None):
         batches_per_epoch = len(training_data)
 
+        """
         print('training level 5')
 
         pynet.level5.model.trainable = True
@@ -69,6 +70,7 @@ class PyNetTrainer:
             pynet.model.save(save_path)
 
         pynet.level2.model.trainable = False
+        """
 
         print('training level 1')
 
