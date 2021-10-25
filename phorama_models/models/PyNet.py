@@ -114,8 +114,6 @@ class Level4(PhoramaModel):
         if level5 == None:
             level5 = Level5()
 
-        level5.model.trainable = False
-
         inputs = Input(shape=(None, None, 128))
 
         inner = inputs
@@ -154,9 +152,6 @@ class Level3(PhoramaModel):
     def __init__(self, load_path=None, level4=None, optimizer='Adam'):
         if level4 == None:
             level4 = Level4()
-
-        level4.model.trainable = False
-
         inputs = Input(shape=(None, None, 64))
 
         inner = inputs
@@ -197,8 +192,6 @@ class Level2(PhoramaModel):
     def __init__(self, load_path=None, level3=None, optimizer='Adam'):
         if level3 == None:
             level3 = Level3()
-
-        level3.model.trainable = False
 
         inputs = Input(shape=(None, None, 32))
 
@@ -246,8 +239,6 @@ class Level1(PhoramaModel):
     def __init__(self, load_path=None, level2=None, optimizer='Adam'):
         if level2 == None:
             level2 = Level2()
-
-        level2.model.trainable = False
 
         inputs = Input(shape=(None, None, 3))
 
