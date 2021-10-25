@@ -15,7 +15,7 @@ class Level1Loss(Loss):
         super().__init__()
         self.vgg = VGG19(weights='imagenet', include_top=False)
 
-    def __call__(self, y_true, y_pred):
+    def __call__(self, y_true, y_pred, *args, **kwargs):
         vgg_true = self.vgg.predict(y_true)
         vgg_pred = self.vgg.predict(y_pred)
 
@@ -27,7 +27,7 @@ class Level2_3Loss(Loss):
         super().__init__()
         self.vgg = VGG19(weights='imagenet', include_top=False)
 
-    def __call__(self, y_true, y_pred):
+    def __call__(self, y_true, y_pred, *args, **kwargs):
         vgg_true = self.vgg.predict(y_true)
         vgg_pred = self.vgg.predict(y_pred)
 
@@ -38,7 +38,7 @@ class Level4_5Loss(Loss):
     def __init__(self):
         super().__init__()
 
-    def __call__(self, y_true, y_pred):
+    def __call__(self, y_true, y_pred, *args, **kwargs):
         return mean_squared_error(y_true, y_pred)
 
 
