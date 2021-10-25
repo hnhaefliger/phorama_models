@@ -14,9 +14,9 @@ class PyNetTrainer:
 
         pynet.level5.model.trainable = True
         inputs = Input((None, None, 3))
-        inner = pynet.level5.model(input)
+        inner = pynet.level5.model(inputs)
         inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
-        level5 = Model(inputs=inputs, outputs=inner)
+        level5 = Model(ss=inputs, outputs=inner)
         level5.compile(loss=Level4_5Loss(), optimizer='adam')
 
         for i in range(epochs):
@@ -29,7 +29,7 @@ class PyNetTrainer:
 
         pynet.level4.model.trainable = True
         inputs = Input((None, None, 3))
-        inner = pynet.level4.model(input)
+        inner = pynet.level4.model(inputs)
         inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
         level4 = Model(inputs=inputs, outputs=inner)
         level4.compile(loss=Level4_5Loss(), optimizer='adam')
@@ -44,7 +44,7 @@ class PyNetTrainer:
 
         pynet.level3.model.trainable = True
         inputs = Input((None, None, 3))
-        inner = pynet.level3.model(input)
+        inner = pynet.level3.model(inputs)
         inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
         level3 = Model(inputs=inputs, outputs=inner)
         level3.compile(loss=Level2_3Loss(), optimizer='adam')
@@ -59,7 +59,7 @@ class PyNetTrainer:
 
         pynet.level2.model.trainable = True
         inputs = Input((None, None, 3))
-        inner = pynet.level2.model(input)
+        inner = pynet.level2.model(inputs)
         inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
         level2 = Model(inputs=inputs, outputs=inner)
         level2.compile(loss=Level2_3Loss(), optimizer='adam')

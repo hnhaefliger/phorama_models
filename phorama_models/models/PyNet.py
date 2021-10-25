@@ -289,10 +289,10 @@ class Level1(PhoramaModel):
 class PyNet(PhoramaModel):
     def __init__(self, load_path=None, optimizer='Adam'):
         self.level5 = Level5()
-        self.level4 = Level4(level5=self.level5.model)
-        self.level3 = Level3(level4=self.level4.model)
-        self.level2 = Level2(level3=self.level3.model)
-        self.level1 = Level1(level2=self.level2.model)
+        self.level4 = Level4(level5=self.level5)
+        self.level3 = Level3(level4=self.level4)
+        self.level2 = Level2(level3=self.level3)
+        self.level1 = Level1(level2=self.level2)
 
         inputs = Input(shape=(None, None, 3))
         inner = inputs
