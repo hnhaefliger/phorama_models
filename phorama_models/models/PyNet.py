@@ -275,7 +275,7 @@ class Level1(PhoramaModel):
 
         inner = MultiConv(inner, 32, normalize=False)
 
-        inner = Conv2DTranspose(3, (2,2), activation='sigmoid')
+        inner = Conv2DTranspose(3, (2,2), activation='sigmoid')(inner)
 
         outputs = inner
 
