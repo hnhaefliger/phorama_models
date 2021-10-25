@@ -65,6 +65,8 @@ SRGAN_trainer = phorama_models.trainers.Trainer()
 
 - [x] RSGUNet (https://openaccess.thecvf.com/content_ECCVW_2018/papers/11133/Huang_Range_Scaling_Global_U-Net_for_Perceptual_Image_Enhancement_on_Mobile_ECCVW_2018_paper.pdf)
 
+- [x] PyNet (https://arxiv.org/pdf/2002.05509.pdf)
+
 ***Models to be implemented***:
 
 - [ ] UNet (https://arxiv.org/pdf/1505.04597.pdf)
@@ -72,8 +74,6 @@ SRGAN_trainer = phorama_models.trainers.Trainer()
 - [ ] GVTNet (https://arxiv.org/pdf/2008.02340.pdf)
 
 - [ ] DPED (https://arxiv.org/pdf/1704.02470.pdf)
-
-- [ ] PyNet (https://arxiv.org/pdf/2002.05509.pdf)
 
 - [ ] CURL (https://arxiv.org/pdf/1911.13175.pdf)
 
