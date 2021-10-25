@@ -110,8 +110,10 @@ class Level5(PhoramaModel):
 
 
 class Level4(PhoramaModel):
-    def __init__(self, load_path=None, load_level5=None, optimizer='Adam'):
-        level5 = Level5(load_path=load_level5)
+    def __init__(self, load_path=None, level5=None, optimizer='Adam'):
+        if level5 == None:
+            level5 = Level5()
+
         level5.model.trainable = False
 
         inputs = Input(shape=(None, None, 128))
@@ -149,8 +151,10 @@ class Level4(PhoramaModel):
 
 
 class Level3(PhoramaModel):
-    def __init__(self, load_path=None, load_level4=None, optimizer='Adam'):
-        level4 = Level4(load_path=load_level4)
+    def __init__(self, load_path=None, level4=None, optimizer='Adam'):
+        if level4 == None:
+            level4 = Level4()
+
         level4.model.trainable = False
 
         inputs = Input(shape=(None, None, 64))
@@ -190,8 +194,10 @@ class Level3(PhoramaModel):
 
         
 class Level2(PhoramaModel):
-    def __init__(self, load_path=None, load_level3=None, optimizer='Adam'):
-        level3 = Level3(load_path=load_level3)
+    def __init__(self, load_path=None, level3=None, optimizer='Adam'):
+        if level3 == None:
+            level3 = Level3()
+
         level3.model.trainable = False
 
         inputs = Input(shape=(None, None, 32))
@@ -237,8 +243,10 @@ class Level2(PhoramaModel):
 
 
 class Level1(PhoramaModel):
-    def __init__(self, load_path=None, load_level2=None, optimizer='Adam'):
-        level2 = Level2(load_path=load_level2)
+    def __init__(self, load_path=None, level2=None, optimizer='Adam'):
+        if level2 == None:
+            level2 = Level2()
+
         level2.model.trainable = False
 
         inputs = Input(shape=(None, None, 3))
@@ -287,10 +295,16 @@ class Level1(PhoramaModel):
 
 class PyNet(PhoramaModel):
     def __init__(self, load_path=None, optimizer='Adam'):
+        self.level5 = Level5()
+        self.level4 = Level4(level5=self.level5)
+        self.level3 = Level3(level4=self.level4)
+        self.level2 = Level2(level3=self.level3)
+        self.level1 = Level1(level2=self.level2)
+
         inputs = Input(shape=(None, None, 3))
         inner = inputs
 
-        inner = Level1()(inner)
+        inner = self.level1(inner)
 
         outputs = inner
 
