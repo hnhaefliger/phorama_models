@@ -1,6 +1,6 @@
 import tensorflow as tf
 from tensorflow.keras.models import Model
-from tensorflow.keras.layers import Input, Conv2D, Conv2DTranspose, Concatenate, LeakyReLU, BatchNormalization, Add, AveragePooling2D
+from tensorflow.keras.layers import Input, Conv2D, Conv2DTranspose, Concatenate, LeakyReLU, BatchNormalization, Add, AveragePooling2D, Conv2DTranspose
 from tensorflow.keras.losses import Loss, mean_squared_error
 from tensorflow.keras.applications import VGG19
 from .model import PhoramaModel
@@ -283,6 +283,8 @@ class Level1(PhoramaModel):
         inner = Concatenate()([inner_s, inner, prev])
 
         inner = MultiConv(inner, 32, normalize=False)
+
+        inner = Conv2DTranspose(3, (2,2), activation='sigmoid')
 
         outputs = inner
 
