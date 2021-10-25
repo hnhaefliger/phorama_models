@@ -21,7 +21,7 @@ class PyNetTrainer:
         level5.compile(loss=Level4_5Loss(), optimizer='adam')
 
         for i in range(epochs):
-            level5.train(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
+            level5.fit(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
             pynet.model.save(save_path)
 
         pynet.level5.model.trainable = False
@@ -36,7 +36,7 @@ class PyNetTrainer:
         level4.compile(loss=Level4_5Loss(), optimizer='adam')
 
         for i in range(epochs):
-            level4.train(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
+            level4.fit(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
             pynet.model.save(save_path)
 
         pynet.level4.model.trainable = False
@@ -51,7 +51,7 @@ class PyNetTrainer:
         level3.compile(loss=Level2_3Loss(), optimizer='adam')
 
         for i in range(epochs):
-            level3.train(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
+            level3.fit(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
             pynet.model.save(save_path)
 
         pynet.level3.model.trainable = False
@@ -66,7 +66,7 @@ class PyNetTrainer:
         level2.compile(loss=Level2_3Loss(), optimizer='adam')
 
         for i in range(epochs):
-            level2.train(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
+            level2.fit(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
             pynet.model.save(save_path)
 
         pynet.level2.model.trainable = False
@@ -78,6 +78,6 @@ class PyNetTrainer:
         pynet.level1.model.compile(loss=Level1Loss(), optimizer='adam')
 
         for i in range(epochs):
-            pynet.level1.model.train(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
+            pynet.level1.model.fit(training_data, epochs=1, steps_per_epoch=batches_per_epoch)
             pynet.model.save(save_path)
     
