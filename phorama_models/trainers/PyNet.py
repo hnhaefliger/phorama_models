@@ -3,8 +3,8 @@ from tensorflow.keras.models import Model
 from tqdm import tqdm
 import numpy as np
 from ..models.PyNet import Level1Loss, Level2_3Loss, Level4_5Loss
-from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2DTranspose
+from tensorflow.keras.models import Model
+from tensorflow.keras.layers import Conv2DTranspose, Input
 
 class PyNetTrainer:
     def train(self, pynet, training_data, epochs=1, validation_data=None, save_path=None):
@@ -13,9 +13,10 @@ class PyNetTrainer:
         print('training level 5')
 
         pynet.level5.model.trainable = True
-        level5 = Sequential()
-        level5.add(pynet.level5.model)
-        level5.add(Conv2DTranspose(3, (2, 2), activation='sigmoid'))
+        inputs = Input((None, None, 3))
+        inner = pynet.level5.model(input)
+        inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
+        level5 = Model(inputs=inputs, outputs=inner)
         level5.compile(loss=Level4_5Loss(), optimizer='adam')
 
         for i in range(epochs):
@@ -27,9 +28,10 @@ class PyNetTrainer:
         print('training level 4')
 
         pynet.level4.model.trainable = True
-        level4 = Sequential()
-        level4.add(pynet.level4.model)
-        level4.add(Conv2DTranspose(3, (2, 2), activation='sigmoid'))
+        inputs = Input((None, None, 3))
+        inner = pynet.level4.model(input)
+        inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
+        level4 = Model(inputs=inputs, outputs=inner)
         level4.compile(loss=Level4_5Loss(), optimizer='adam')
 
         for i in range(epochs):
@@ -41,9 +43,10 @@ class PyNetTrainer:
         print('training level 3')
 
         pynet.level3.model.trainable = True
-        level3 = Sequential()
-        level3.add(pynet.level3.model)
-        level3.add(Conv2DTranspose(3, (2, 2), activation='sigmoid'))
+        inputs = Input((None, None, 3))
+        inner = pynet.level3.model(input)
+        inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
+        level3 = Model(inputs=inputs, outputs=inner)
         level3.compile(loss=Level2_3Loss(), optimizer='adam')
 
         for i in range(epochs):
@@ -55,9 +58,10 @@ class PyNetTrainer:
         print('training level 2')
 
         pynet.level2.model.trainable = True
-        level2 = Sequential()
-        level2.add(pynet.level2.model)
-        level2.add(Conv2DTranspose(3, (2, 2), activation='sigmoid'))
+        inputs = Input((None, None, 3))
+        inner = pynet.level2.model(input)
+        inner = Conv2DTranspose(3, (2, 2), activation='sigmoid')(inner)
+        level2 = Model(inputs=inputs, outputs=inner)
         level2.compile(loss=Level2_3Loss(), optimizer='adam')
 
         for i in range(epochs):
